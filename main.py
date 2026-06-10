@@ -1,6 +1,8 @@
 import customtkinter as ctk
 import tkinter as tk
 import random
+import os
+
 from config import (WIN_W, WIN_H, SPEED_LEVELS, SPEED_LABELS, SPEED_COLORS, 
                      SPEED_HOVER, DAYS_IN_MONTH, DAY_NAMES, DAY_ANIM_TOTAL, 
                      DAY_ANIM_START, S_DONE, S_KELUAR, S_BATAL, S_FORCED, SK_DONE, 
@@ -296,6 +298,13 @@ def init_ui():
     app = ctk.CTk()
     app.title("Thrift Shop Simulation")
     app.configure(fg_color="#0A0A0A")
+
+    try:
+        ikon = os.path.dirname(__file__)
+        ikons = os.path.join(ikon, "Icon" ,"icon.png")
+        app.after(200, lambda: app.iconphoto(False, tk.PhotoImage(file=ikons)))
+    except Exception as e:
+        print(f"icon failed: {e}")
 
     app.update_idletasks()
     sw = app.winfo_screenwidth()
